@@ -170,7 +170,7 @@ public class Menu {
 
         System.out.println("Digite o ID da disciplina: ");
         int idDisciplina = sc.nextInt();
-        sc.nextLine(); // Consumir a quebra de linha
+        sc.nextLine();
 
         // Verifique se o ID da disciplina já existe
         for (Disciplina disciplina : disciplinas) {
@@ -188,11 +188,11 @@ public class Menu {
 
         System.out.println("Digite a carga horária da disciplina: ");
         int cargaHorariaDisciplina = sc.nextInt();
-        sc.nextLine(); // Consumir a quebra de linha
+        sc.nextLine(); 
 
         System.out.println("Digite o ID do pré-requisito da disciplina (ou -1 se não houver): ");
         int idPreRequisito = sc.nextInt();
-        sc.nextLine(); // Consumir a quebra de linha
+        sc.nextLine(); 
 
         Disciplina disciplina = new Disciplina(idDisciplina, nomeDisciplina, siglaDisciplina, cargaHorariaDisciplina, idPreRequisito);
         disciplinas.add(disciplina);
@@ -205,7 +205,7 @@ public class Menu {
 
         System.out.println("Digite o ID da turma: ");
         int idTurma = sc.nextInt();
-        sc.nextLine(); // Consumir a quebra de linha
+        sc.nextLine(); /
 
         // Verifique se o ID da turma já existe
         for (Turma turma : turmas) {
@@ -223,7 +223,7 @@ public class Menu {
 
         System.out.println("Digite o ID da disciplina da turma: ");
         int idDisciplinaTurma = sc.nextInt();
-        sc.nextLine(); // Consumir a quebra de linha
+        sc.nextLine(); 
 
         // Verificar se o ID da disciplina existe
         Disciplina disciplinaSelecionada = null;
