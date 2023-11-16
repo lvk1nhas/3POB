@@ -205,7 +205,7 @@ public class Menu {
 
         System.out.println("Digite o ID da turma: ");
         int idTurma = sc.nextInt();
-        sc.nextLine(); /
+        sc.nextLine(); 
 
         // Verifique se o ID da turma já existe
         for (Turma turma : turmas) {
@@ -261,7 +261,7 @@ public class Menu {
             System.out.println("Alunos na Turma:");
             for (Aluno aluno : alunosTurma) {
                 System.out.println("Nome: " + aluno.getNome());
-                // Adicione mais informações do aluno, se necessário
+            
             }
 
             System.out.println();
