@@ -87,9 +87,12 @@ public class Cama {
 
         int novoId = camas.size() + 1;
         Cama novaCama = new Cama(novoId, codigoCama, ehBeliche, posicao, descricao);
-        camas.add(novaCama);
-
-        System.out.println("Cama cadastrada com sucesso!");
+        if (novaCama.validarCama()) {
+            camas.add(novaCama);
+            System.out.println("Cama cadastrada com sucesso!");
+        } else {
+            System.out.println("Cama não cadastrada devido a dados inválidos.");
+        }
     }
 
     // Função para alterar os dados de uma cama existente
@@ -140,7 +143,11 @@ public class Cama {
             camaExistente.descricao = novaDescricao;
         }
 
-        System.out.println("Cama alterada com sucesso!");
+        if (camaExistente.validarCama()) {
+            System.out.println("Cama alterada com sucesso!");
+        } else {
+            System.out.println("Cama não alterada devido a dados inválidos.");
+        }
     }
 
     // Função para excluir uma cama existente
@@ -183,4 +190,20 @@ public class Cama {
         }
         return null;
     }
-}
+
+        // Método para validar dados da cama
+        public boolean validarCama() {
+            return validaCodigoCama() && validaDescricao();
+            // Adicione outras validações necessárias para os atributos restantes
+        }
+    
+        private boolean validaCodigoCama() {
+            return codigoCama != null && !codigoCama.trim().isEmpty();
+        }
+    
+        private boolean validaDescricao() {
+            return descricao != null && !descricao.trim().isEmpty();
+        }
+    }
+
+
