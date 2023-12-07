@@ -191,10 +191,10 @@ public class Cama {
         return null;
     }
 
-        // Método para validar dados da cama
+        // Método para validar os dados da cama criada
         public boolean validarCama() {
             return validaCodigoCama() && validaDescricao();
-            // Adicione outras validações necessárias para os atributos restantes
+            
         }
     
         private boolean validaCodigoCama() {
