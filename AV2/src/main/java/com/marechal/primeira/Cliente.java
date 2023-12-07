@@ -91,15 +91,31 @@ public class Cliente {
 
         System.out.println("Digite o passaporte do cliente: ");
         String passaporte = sc.nextLine();
+        if (!validarPassaporte(passaporte)) {
+            System.out.println("Passaporte inválido. Cliente não cadastrado.");
+            return;
+        }
 
         System.out.println("Digite o endereço do cliente: ");
         String endereco = sc.nextLine();
+        if (!validarEndereco(endereco)) {
+            System.out.println("Endereço inválido. Cliente não cadastrado.");
+            return;
+        }
 
         System.out.println("Digite o código postal do cliente: ");
         String postalCode = sc.nextLine();
+        if (!validarPostalCode(postalCode)) {
+            System.out.println("Código postal inválido. Cliente não cadastrado.");
+            return;
+        }
 
         System.out.println("Digite o país do cliente: ");
         String pais = sc.nextLine();
+        if (!validarPais(pais)) {
+            System.out.println("País inválido. Cliente não cadastrado.");
+            return;
+        }
 
         // Adicionando validação para o e-mail (pode ser mais complexa dependendo dos requisitos)
         System.out.println("Digite o e-mail do cliente: ");
@@ -161,29 +177,37 @@ public class Cliente {
         // Adicionando validação para o passaporte e mantendo o passaporte existente se o novo for inválido
         System.out.println("Digite o novo passaporte do cliente (ou pressione Enter para manter o mesmo): ");
         String novoPassaporte = sc.nextLine();
-        if (!novoPassaporte.isEmpty()) {
+        if (!novoPassaporte.isEmpty() && validarPassaporte(novoPassaporte)) {
             clienteExistente.passaporte = novoPassaporte;
+        } else {
+            System.out.println("Passaporte inválido. Mantendo o passaporte existente.");
         }
 
         // Adicionando validação para o endereço e mantendo o endereço existente se o novo for inválido
         System.out.println("Digite o novo endereço do cliente (ou pressione Enter para manter o mesmo): ");
         String novoEndereco = sc.nextLine();
-        if (!novoEndereco.isEmpty()) {
+        if (!novoEndereco.isEmpty() && validarEndereco(novoEndereco)) {
             clienteExistente.endereco = novoEndereco;
+        } else {
+            System.out.println("Endereço inválido. Mantendo o endereço existente.");
         }
 
         // Adicionando validação para o código postal e mantendo o código postal existente se o novo for inválido
         System.out.println("Digite o novo código postal do cliente (ou pressione Enter para manter o mesmo): ");
         String novoPostalCode = sc.nextLine();
-        if (!novoPostalCode.isEmpty()) {
+        if (!novoPostalCode.isEmpty() && validarPostalCode(novoPostalCode)) {
             clienteExistente.postalCode = novoPostalCode;
+        } else {
+            System.out.println("Código postal inválido. Mantendo o código postal existente.");
         }
 
         // Adicionando validação para o país e mantendo o país existente se o novo for inválido
         System.out.println("Digite o novo país do cliente (ou pressione Enter para manter o mesmo): ");
         String novoPais = sc.nextLine();
-        if (!novoPais.isEmpty()) {
+        if (!novoPais.isEmpty() && validarPais(novoPais)) {
             clienteExistente.pais = novoPais;
+        } else {
+            System.out.println("País inválido. Mantendo o país existente.");
         }
 
         // Adicionando validação para o e-mail e mantendo o e-mail existente se o novo for inválido
@@ -266,5 +290,33 @@ public class Cliente {
     private static boolean validarEmail(String email) {
         // Implementação básica de validação de e-mail
         return email.matches(".+@.+\\..+");
+    }
+
+     // Função para validar o passaporte
+    private static boolean validarPassaporte(String passaporte) {
+        // Validar passaporte brasileiro: duas letras seguidas de seis números
+        // Exemplo válido: AB123456
+        String regexPassaporte = "^[A-Z]{2}\\d{6}$";
+        return passaporte.matches(regexPassaporte);
+    }
+
+    // Função para validar o código postal
+    private static boolean validarPostalCode(String postalCode) {
+        // Validar código postal brasileiro: oito números
+        // Exemplo válido: 12345678
+        String regexPostalCode = "^\\d{8}$";
+        return postalCode.matches(regexPostalCode);
+    }
+
+    // Função para validar o endereço
+    private static boolean validarEndereco(String endereco) {
+        // Implementação básica de validação de endereço
+        return !endereco.isEmpty();
+    }
+
+    // Função para validar o país
+    private static boolean validarPais(String pais) {
+        // Implementação básica de validação de país
+        return !pais.isEmpty();
     }
 }
