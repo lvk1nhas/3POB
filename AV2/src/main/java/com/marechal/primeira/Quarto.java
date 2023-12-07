@@ -91,9 +91,12 @@ public class Quarto {
 
         int novoId = quartos.size() + 1;
         Quarto novoQuarto = new Quarto(novoId, nomeQuarto, qtdeCamas, temBanheiro, descricao);
-        quartos.add(novoQuarto);
-
-        System.out.println("Quarto cadastrado com sucesso!");
+        if (novoQuarto.validarQuarto()) {
+            quartos.add(novoQuarto);
+            System.out.println("Quarto cadastrado com sucesso!");
+        } else {
+            System.out.println("Quarto não cadastrado devido a dados inválidos.");
+        }
     }
 
     // Função para alterar os dados de um quarto existente
@@ -141,7 +144,11 @@ public class Quarto {
             quartoExistente.descricao = novaDescricao;
         }
 
-        System.out.println("Quarto alterado com sucesso!");
+        if (quartoExistente.validarQuarto()) {
+            System.out.println("Quarto alterado com sucesso!");
+        } else {
+            System.out.println("Quarto não alterado devido a dados inválidos.");
+        }
     }
 
     // Função para excluir um quarto existente
@@ -183,5 +190,23 @@ public class Quarto {
             }
         }
         return null;
+    }
+
+      // Método para validar dados do quarto
+    public boolean validarQuarto() {
+        return validaNomeQuarto() && validaQtdeCamas() && validaDescricao();
+        // Adicione outras validações necessárias para os atributos restantes
+    }
+
+    private boolean validaNomeQuarto() {
+        return nomeQuarto != null && !nomeQuarto.trim().isEmpty();
+    }
+
+    private boolean validaQtdeCamas() {
+        return qtdeCamas > 0; // Verifica se a quantidade de camas é maior que zero
+    }
+
+    private boolean validaDescricao() {
+        return descricao != null && !descricao.trim().isEmpty();
     }
 }
