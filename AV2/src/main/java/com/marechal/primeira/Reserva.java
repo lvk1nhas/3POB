@@ -123,7 +123,7 @@ public class Reserva {
             System.out.println("Formato de data inválido. Reserva não cadastrada.");
             return;
         }
-
+    
         System.out.println("Digite a data de saída da reserva (dd/MM/yyyy): ");
         String dataSaidaStr = sc.next();
         Date dataSaida = null;
@@ -132,6 +132,11 @@ public class Reserva {
             dataSaida = sdf.parse(dataSaidaStr);
         } catch (ParseException e) {
             System.out.println("Formato de data inválido. Reserva não cadastrada.");
+            return;
+        }
+    
+        if (dataEntrada.after(dataSaida)) {
+            System.out.println("Data de entrada deve ser anterior à data de saída. Reserva não cadastrada.");
             return;
         }
 
@@ -190,33 +195,47 @@ public class Reserva {
         }
 
         System.out.println("Digite a nova data de entrada da reserva (dd/MM/yyyy) " +
-                "(ou pressione Enter para manter a mesma): ");
-        String novaDataEntradaStr = sc.next();
-        if (!novaDataEntradaStr.isEmpty()) {
-            try {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                Date novaDataEntrada = sdf.parse(novaDataEntradaStr);
-                reservaExistente.dataEntrada = novaDataEntrada;
-            } catch (ParseException e) {
-                System.out.println("Formato de data inválido. Mantendo a data de entrada existente.");
+            "(ou pressione Enter para manter a mesma): ");
+    String novaDataEntradaStr = sc.next();
+    if (!novaDataEntradaStr.isEmpty()) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date novaDataEntrada = sdf.parse(novaDataEntradaStr);
+
+            // Adiciona validação para garantir que a nova data de entrada seja anterior à data de saída
+            if (novaDataEntrada.after(reservaExistente.dataSaida)) {
+                System.out.println("Data de entrada deve ser anterior à data de saída. Mantendo a data de entrada existente.");
+                return;
             }
+
+            reservaExistente.dataEntrada = novaDataEntrada;
+        } catch (ParseException e) {
+            System.out.println("Formato de data inválido. Mantendo a data de entrada existente.");
         }
+    }
 
         System.out.println("Digite a nova data de saída da reserva (dd/MM/yyyy) " +
-                "(ou pressione Enter para manter a mesma): ");
+        "(ou pressione Enter para manter a mesma): ");
         String novaDataSaidaStr = sc.next();
         if (!novaDataSaidaStr.isEmpty()) {
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 Date novaDataSaida = sdf.parse(novaDataSaidaStr);
+
+                // Adiciona validação para garantir que a nova data de saída seja posterior à data de entrada
+                if (novaDataSaida.before(reservaExistente.dataEntrada)) {
+                    System.out.println("Data de saída deve ser posterior à data de entrada. Mantendo a data de saída existente.");
+                    return;
+                }
+
                 reservaExistente.dataSaida = novaDataSaida;
             } catch (ParseException e) {
                 System.out.println("Formato de data inválido. Mantendo a data de saída existente.");
             }
-        }
+}
 
-        System.out.println("Reserva alterada com sucesso!");
-    }
+System.out.println("Reserva alterada com sucesso!");
+}
 
     // Função para excluir uma reserva existente
     public static void excluirReserva() {
