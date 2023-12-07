@@ -192,10 +192,9 @@ public class Quarto {
         return null;
     }
 
-      // Método para validar dados do quarto
+      // Método para validar os dados do quarto criado/alterado
     public boolean validarQuarto() {
         return validaNomeQuarto() && validaQtdeCamas() && validaDescricao();
-        // Adicione outras validações necessárias para os atributos restantes
     }
 
     private boolean validaNomeQuarto() {
@@ -203,7 +202,7 @@ public class Quarto {
     }
 
     private boolean validaQtdeCamas() {
-        return qtdeCamas > 0; // Verifica se a quantidade de camas é maior que zero
+        return qtdeCamas > 0;
     }
 
     private boolean validaDescricao() {
