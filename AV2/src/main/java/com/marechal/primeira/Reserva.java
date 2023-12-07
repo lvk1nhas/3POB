@@ -31,24 +31,48 @@ public class Reserva {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getIdQuarto() {
         return idQuarto;
     }
 
+    public void setIdQuarto(int idQuarto) {
+        this.idQuarto = idQuarto;
+    }
+    
     public int getIdCama() {
         return idCama;
+    }
+
+    public void setIdCama(int idCama) {
+        this.idCama = idCama;
     }
 
     public int getIdCliente() {
         return idCliente;
     }
 
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
     public Date getDataEntrada() {
         return dataEntrada;
     }
 
+    public void setDataEntrada(Date dataEntrada) {
+        this.dataEntrada = dataEntrada;
+    }
+
     public Date getDataSaida() {
         return dataSaida;
+    }
+
+    public void setDataSaida(Date dataSaida) {
+        this.dataSaida = dataSaida;
     }
 
     public static List<Reserva> getReservas() {
