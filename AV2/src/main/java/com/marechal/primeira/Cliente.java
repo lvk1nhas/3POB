@@ -89,6 +89,18 @@ public class Cliente {
             return;
         }
 
+        System.out.println("Digite o passaporte do cliente: ");
+        String passaporte = sc.nextLine();
+
+        System.out.println("Digite o endereço do cliente: ");
+        String endereco = sc.nextLine();
+
+        System.out.println("Digite o código postal do cliente: ");
+        String postalCode = sc.nextLine();
+
+        System.out.println("Digite o país do cliente: ");
+        String pais = sc.nextLine();
+
         // Adicionando validação para o e-mail (pode ser mais complexa dependendo dos requisitos)
         System.out.println("Digite o e-mail do cliente: ");
         String email = sc.nextLine();
@@ -109,7 +121,7 @@ public class Cliente {
         }
 
         int novoId = clientes.size() + 1;
-        Cliente novoCliente = new Cliente(novoId, nome, null, null, null, cpf, null, email, dataNascimento);
+        Cliente novoCliente = new Cliente(novoId, nome, endereco, postalCode, pais, cpf, passaporte, email, dataNascimento);
         clientes.add(novoCliente);
 
         System.out.println("Cliente cadastrado com sucesso!");
@@ -144,6 +156,34 @@ public class Cliente {
             clienteExistente.cpf = novoCpf;
         } else {
             System.out.println("CPF inválido. Mantendo o CPF existente.");
+        }
+
+        // Adicionando validação para o passaporte e mantendo o passaporte existente se o novo for inválido
+        System.out.println("Digite o novo passaporte do cliente (ou pressione Enter para manter o mesmo): ");
+        String novoPassaporte = sc.nextLine();
+        if (!novoPassaporte.isEmpty()) {
+            clienteExistente.passaporte = novoPassaporte;
+        }
+
+        // Adicionando validação para o endereço e mantendo o endereço existente se o novo for inválido
+        System.out.println("Digite o novo endereço do cliente (ou pressione Enter para manter o mesmo): ");
+        String novoEndereco = sc.nextLine();
+        if (!novoEndereco.isEmpty()) {
+            clienteExistente.endereco = novoEndereco;
+        }
+
+        // Adicionando validação para o código postal e mantendo o código postal existente se o novo for inválido
+        System.out.println("Digite o novo código postal do cliente (ou pressione Enter para manter o mesmo): ");
+        String novoPostalCode = sc.nextLine();
+        if (!novoPostalCode.isEmpty()) {
+            clienteExistente.postalCode = novoPostalCode;
+        }
+
+        // Adicionando validação para o país e mantendo o país existente se o novo for inválido
+        System.out.println("Digite o novo país do cliente (ou pressione Enter para manter o mesmo): ");
+        String novoPais = sc.nextLine();
+        if (!novoPais.isEmpty()) {
+            clienteExistente.pais = novoPais;
         }
 
         // Adicionando validação para o e-mail e mantendo o e-mail existente se o novo for inválido
@@ -196,6 +236,10 @@ public class Cliente {
             System.out.println("ID: " + cliente.getId());
             System.out.println("Nome: " + cliente.getNome());
             System.out.println("CPF: " + cliente.getCpf());
+            System.out.println("Passaporte: " + cliente.getPassaporte());
+            System.out.println("Endereço: " + cliente.getEndereco());
+            System.out.println("Código Postal: " + cliente.getPostalCode());
+            System.out.println("País: " + cliente.getPais());
             System.out.println("E-mail: " + cliente.getEmail());
             System.out.println("Data de Nascimento: " + cliente.getDataNascimento());
             System.out.println();
@@ -215,14 +259,12 @@ public class Cliente {
     // Função para validar o CPF (simplificada)
     private static boolean validarCPF(String cpf) {
         // Implementação básica de validação de CPF
-        // Pode ser substituída por uma lógica mais robusta se necessário
         return cpf.matches("\\d{11}");
     }
 
     // Função para validar o e-mail (simplificada)
     private static boolean validarEmail(String email) {
         // Implementação básica de validação de e-mail
-        // Pode ser substituída por uma lógica mais robusta se necessário
         return email.matches(".+@.+\\..+");
     }
 }
