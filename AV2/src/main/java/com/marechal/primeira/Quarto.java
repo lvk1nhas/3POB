@@ -76,6 +76,11 @@ public class Quarto {
         System.out.println("Digite a quantidade de camas no quarto: ");
         int qtdeCamas = sc.nextInt();
 
+        if (qtdeCamas <= 0) {
+            System.out.println("A quantidade de camas deve ser maior que zero. Quarto não cadastrado.");
+            return;
+        }
+
         System.out.println("O quarto tem banheiro? (sim/nao): ");
         String respostaBanheiro = sc.next();
         boolean temBanheiro = respostaBanheiro.equalsIgnoreCase("sim");
@@ -115,6 +120,12 @@ public class Quarto {
 
         System.out.println("Digite a nova quantidade de camas no quarto: ");
         int novaQtdeCamas = sc.nextInt();
+
+        if (novaQtdeCamas <= 0) {
+            System.out.println("A quantidade de camas deve ser maior que zero. Quarto não cadastrado.");
+            return;
+        }
+        
         quartoExistente.qtdeCamas = novaQtdeCamas;
 
         System.out.println("O quarto tem banheiro? (sim/nao - ou pressione Enter para manter o mesmo): ");
