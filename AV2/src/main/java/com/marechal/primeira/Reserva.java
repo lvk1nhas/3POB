@@ -142,9 +142,12 @@ public class Reserva {
 
         int novoId = reservas.size() + 1;
         Reserva novaReserva = new Reserva(novoId, idQuarto, idCama, idCliente, dataEntrada, dataSaida);
-        reservas.add(novaReserva);
-
-        System.out.println("Reserva cadastrada com sucesso!");
+        if (novaReserva.validarReserva()) {
+            reservas.add(novaReserva);
+            System.out.println("Reserva cadastrada com sucesso!");
+        } else {
+            System.out.println("Reserva não cadastrada devido a dados inválidos.");
+        }
     }
 
     // Função para alterar os dados de uma reserva existente
@@ -234,7 +237,11 @@ public class Reserva {
             }
 }
 
-System.out.println("Reserva alterada com sucesso!");
+    if (reservaExistente.validarReserva()) {
+        System.out.println("Reserva alterada com sucesso!");
+    } else {
+        System.out.println("Reserva não alterada devido a dados inválidos.");
+    }
 }
 
     // Função para excluir uma reserva existente
@@ -277,5 +284,27 @@ System.out.println("Reserva alterada com sucesso!");
             }
         }
         return null;
+    }
+
+       // Método para validar os dados da reserva criada
+       public boolean validarReserva() {
+        return validaIdQuarto() && validaIdCama() && validaIdCliente() && validaDatas();
+    }
+
+    private boolean validaIdQuarto() {
+        return idQuarto >= 0; 
+    }
+
+    private boolean validaIdCama() {
+        return idCama >= 0;
+    }
+
+    private boolean validaIdCliente() {
+        return idCliente >= 0; 
+    }
+
+    private boolean validaDatas() {
+        return dataEntrada != null && dataSaida != null && dataEntrada.before(dataSaida);
+      
     }
 }
